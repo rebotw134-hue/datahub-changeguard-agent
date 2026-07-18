@@ -1,0 +1,55 @@
+1
+00:00:00,400 --> 00:00:05,700
+Schema risk hides behind a pull request.  ·  风险常常隐藏在看似普通的 Schema 变更里
+
+2
+00:00:05,700 --> 00:00:11,200
+ChangeGuard decides before production.  ·  ChangeGuard 在上线前给出可审计决策
+
+3
+00:00:11,900 --> 00:00:19,500
+Real DataHub graph: owner, tags, and lineage.  ·  真实 DataHub 图谱：负责人、标签与血缘
+
+4
+00:00:19,500 --> 00:00:27,300
+Field lineage reveals exact consumers.  ·  字段级血缘定位真正受影响的下游
+
+5
+00:00:27,900 --> 00:00:35,600
+Rename, type, and nullability changes.  ·  重命名、类型和空值约束三类风险
+
+6
+00:00:35,600 --> 00:00:43,200
+Renames require explicit evidence.  ·  重命名必须提供明确映射，系统不会猜测
+
+7
+00:00:43,800 --> 00:00:51,500
+Live evidence returns BLOCK at 100 out of 100.  ·  实时证据计算结果：BLOCK，风险 100/100
+
+8
+00:00:51,500 --> 00:00:59,300
+Every finding names affected assets.  ·  每项风险都指向具体受影响资产
+
+9
+00:00:59,900 --> 00:01:06,600
+Compatibility SQL and a dbt contract.  ·  生成兼容 SQL 与 dbt 契约
+
+10
+00:01:06,600 --> 00:01:13,200
+Proposals only. Nothing is deployed.  ·  仅供审核，不会自动部署
+
+11
+00:01:13,800 --> 00:01:21,700
+Writeback requires two confirmation flags.  ·  写回必须经过两个显式确认参数
+
+12
+00:01:21,700 --> 00:01:29,000
+The same audit cannot duplicate incidents.  ·  同一审计不会重复创建事件
+
+13
+00:01:29,700 --> 00:01:38,000
+AI explains. Deterministic code enforces.  ·  AI 负责解释，确定性代码负责执行规则
+
+14
+00:01:38,000 --> 00:01:46,300
+DataHub keeps the auditable record.  ·  DataHub 保存可审计的操作记录

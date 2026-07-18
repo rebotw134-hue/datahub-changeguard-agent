@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1280, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>DataHub ChangeGuard demo storyboard</title>
+  <style>
+    :root { --ink:#17202a; --muted:#5f6b76; --paper:#f4f6f8; --line:#cfd7df;
+      --dark:#111820; --red:#d92d20; --blue:#175cd3; --green:#067647; --amber:#b54708; }
+    * { box-sizing:border-box; }
+    html,body { width:1280px; height:720px; margin:0; overflow:hidden; }
+    body { background:var(--paper); color:var(--ink); font:22px/1.4 Inter,ui-sans-serif,system-ui,sans-serif; letter-spacing:0; }
+    .slide { display:none; width:1280px; height:720px; position:relative; padding:42px 56px 38px; }
+    .slide.active { display:block; }
+    .topline { display:flex; justify-content:space-between; align-items:center; margin-bottom:26px; color:var(--muted); font-size:15px; font-weight:800; text-transform:uppercase; }
+    .brand { color:var(--blue); }
+    .progress { position:absolute; left:0; right:0; bottom:0; height:8px; background:#dfe4e9; }
+    .progress span { display:block; height:100%; background:var(--blue); }
+    h1,h2,p { margin-top:0; }
+    h1 { max-width:1000px; margin-bottom:20px; font-size:66px; line-height:1.06; letter-spacing:0; }
+    h2 { margin-bottom:12px; font-size:42px; line-height:1.1; letter-spacing:0; }
+    .lede { max-width:850px; color:#d5dee7; font-size:27px; }
+    .muted { color:var(--muted); }
+    .eyebrow { margin-bottom:12px; color:var(--blue); font-size:16px; font-weight:800; text-transform:uppercase; }
+    .title-slide { background:var(--dark); color:white; padding-top:72px; }
+    .title-slide .topline { color:#9fb7d4; }
+    .title-slide .brand { color:#9fc4ff; }
+    .title-slide h1 { margin-top:68px; }
+    .title-slide .progress { background:#2b3641; }
+    .title-slide .progress span { background:var(--red); }
+    .evidence-strip { position:absolute; left:56px; right:56px; bottom:52px; display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid #4b5966; }
+    .evidence-strip div { padding:18px 22px 0 0; }
+    .evidence-strip strong { display:block; font-size:30px; }
+    .evidence-strip small { color:#9fb0c0; font-size:14px; text-transform:uppercase; }
+    .split { display:grid; grid-template-columns:330px 1fr; gap:34px; align-items:start; }
+    .facts { margin:24px 0 0; padding:0; list-style:none; border-top:1px solid var(--line); }
+    .facts li { padding:16px 0; border-bottom:1px solid var(--line); }
+    .facts strong { display:block; font-size:28px; }
+    .facts small { display:block; color:var(--muted); font-size:15px; }
+    .shot { width:100%; height:532px; object-fit:contain; object-position:center top; border:1px solid var(--line); background:white; }
+    .diff-grid { display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:32px; }
+    .diff { min-height:390px; padding:30px; border:1px solid var(--line); background:white; }
+    .diff h3 { margin:0 0 24px; font-size:19px; text-transform:uppercase; }
+    .code-line { display:grid; grid-template-columns:150px 30px 1fr; align-items:center; padding:17px 0; border-bottom:1px solid var(--line); font:19px/1.35 ui-monospace,SFMono-Regular,monospace; }
+    .removed { color:var(--red); } .added { color:var(--green); }
+    .guardrail { margin-top:26px; padding:18px 22px; border-left:6px solid var(--amber); background:#fffaeb; font-weight:700; }
+    .report-layout { display:grid; grid-template-columns:260px 1fr; gap:28px; }
+    .score { margin:22px 0; color:var(--red); font-size:58px; font-weight:850; line-height:1; }
+    .report-shot { width:100%; height:560px; object-fit:contain; object-position:center top; border:1px solid var(--line); background:white; }
+    .artifact-grid { display:grid; grid-template-columns:1fr 1fr; gap:26px; margin-top:26px; }
+    .code-panel { height:430px; padding:26px 28px; border-top:6px solid var(--blue); background:#111820; color:#e7edf3; font:19px/1.55 ui-monospace,SFMono-Regular,monospace; white-space:pre-wrap; }
+    .code-panel.dbt { border-color:var(--green); }
+    .code-panel strong { display:block; margin-bottom:20px; color:#9fc4ff; font:15px/1.3 Inter,ui-sans-serif,system-ui,sans-serif; text-transform:uppercase; }
+    .code-panel.dbt strong { color:#85deb5; }
+    .writeback-layout { display:grid; grid-template-columns:300px 1fr; gap:28px; }
+    .writeback-shot { width:100%; height:548px; object-fit:contain; object-position:center top; border:1px solid var(--line); background:white; }
+    .check { margin-top:26px; padding:18px 0; border-top:1px solid var(--line); font-weight:750; }
+    .check span { display:block; margin-top:6px; color:var(--green); font:16px/1.4 ui-monospace,SFMono-Regular,monospace; }
+    .architecture { display:grid; grid-template-columns:1fr 70px 1fr 70px 1fr; gap:0; align-items:stretch; margin-top:54px; }
+    .node { min-height:210px; padding:26px; border-top:7px solid var(--blue); background:white; color:var(--ink); }
+    .node.runtime { border-color:var(--red); } .node.catalog { border-color:var(--green); }
+    .node h3 { margin:0 0 18px; font-size:28px; }
+    .node p { color:var(--muted); font-size:19px; }
+    .arrow { display:flex; align-items:center; justify-content:center; color:#667786; font-size:42px; }
+    .close-slide { background:var(--dark); color:white; }
+    .close-slide .topline { color:#9fb7d4; }
+    .close-slide h2 { margin-top:36px; font-size:52px; }
+    .close-slide .architecture { margin-top:30px; }
+    .result-line { display:flex; gap:42px; margin-top:22px; padding:14px 0; border-top:1px solid #4b5966; border-bottom:1px solid #4b5966; }
+    .result-line strong { display:block; font-size:30px; }
+    .result-line small { color:#9fb0c0; font-size:14px; text-transform:uppercase; }
+    .close-slide .progress { background:#2b3641; }
+    .close-slide .progress span { background:var(--red); }
+  </style>
+</head>
+<body>
+  <section class="slide title-slide" data-slide="1">
+    <div class="topline"><span class="brand">Build with DataHub</span><span>01 / 07</span></div>
+    <p class="eyebrow">Pre-deployment schema review agent</p>
+    <h1>DataHub ChangeGuard</h1>
+    <p class="lede">Catalog-grounded evidence, compatibility code, and controlled incident writeback before a risky schema change reaches production.</p>
+    <div class="evidence-strip">
+      <div><strong>BLOCK</strong><small>Deterministic decision</small></div>
+      <div><strong>2 downstreams</strong><small>Field-level lineage</small></div>
+      <div><strong>15 tests</strong><small>Reproducible runtime</small></div>
+    </div>
+    <div class="progress"><span style="width:14.3%"></span></div>
+  </section>
+
+  <section class="slide" data-slide="2">
+    <div class="topline"><span class="brand">DataHub ChangeGuard</span><span>02 / 07</span></div>
+    <div class="split">
+      <div>
+        <p class="eyebrow">Agent Context Kit 1.6.0.14</p>
+        <h2>The graph a pull request cannot show</h2>
+        <ul class="facts">
+          <li><strong>commerce.orders</strong><small>Owned by data-platform</small></li>
+          <li><strong>2 consumers</strong><small>Finance and growth</small></li>
+          <li><strong>Field lineage</strong><small>Exact source-column use</small></li>
+        </ul>
+      </div>
+      <img class="shot" src="../output/playwright/datahub-dataset.png" alt="DataHub dataset and lineage">
+    </div>
+    <div class="progress"><span style="width:28.6%"></span></div>
+  </section>
+
+  <section class="slide" data-slide="3">
+    <div class="topline"><span class="brand">DataHub ChangeGuard</span><span>03 / 07</span></div>
+    <p class="eyebrow">Proposed migration</p>
+    <h2>Three small edits, three different risks</h2>
+    <div class="diff-grid">
+      <div class="diff">
+        <h3>Current schema</h3>
+        <div class="code-line removed"><span>order_total</span><span></span><span>DECIMAL(12,2)</span></div>
+        <div class="code-line removed"><span>order_id</span><span></span><span>BIGINT</span></div>
+        <div class="code-line removed"><span>currency</span><span></span><span>NOT NULL</span></div>
+      </div>
+      <div class="diff">
+        <h3>Proposed schema</h3>
+        <div class="code-line added"><span>total_amount</span><span></span><span>DECIMAL(12,2)</span></div>
+        <div class="code-line added"><span>order_id</span><span></span><span>VARCHAR(36)</span></div>
+        <div class="code-line added"><span>currency</span><span></span><span>NULL</span></div>
+      </div>
+    </div>
+    <div class="guardrail">Rename mapping required: <code>order_total -&gt; total_amount</code>. ChangeGuard never infers it.</div>
+    <div class="progress"><span style="width:42.9%"></span></div>
+  </section>
+
+  <section class="slide" data-slide="4">
+    <div class="topline"><span class="brand">DataHub ChangeGuard</span><span>04 / 07</span></div>
+    <div class="report-layout">
+      <div>
+        <p class="eyebrow">Live Agent Context Kit run</p>
+        <h2>Evidence becomes a decision</h2>
+        <div class="score">100/100</div>
+        <p class="muted">Critical rename and type findings, plus high nullability risk.</p>
+        <div class="check">Exact affected assets<span>finance.daily_revenue<br>growth.customer_ltv</span></div>
+      </div>
+      <img class="report-shot" src="../output/playwright/report-desktop.png" alt="ChangeGuard evidence report">
+    </div>
+    <div class="progress"><span style="width:57.1%"></span></div>
+  </section>
+
+  <section class="slide" data-slide="5">
+    <div class="topline"><span class="brand">DataHub ChangeGuard</span><span>05 / 07</span></div>
+    <p class="eyebrow">Generated remediation</p>
+    <h2>Reviewable code, never automatic deployment</h2>
+    <div class="artifact-grid">
+      <div class="code-panel"><strong>compatibility_view.sql</strong>CREATE OR REPLACE VIEW
+  commerce.orders_compat AS
+SELECT
+  order_id,
+  customer_id,
+  total_amount AS order_total,
+  currency,
+  created_at
+FROM commerce.orders_v2;</div>
+      <div class="code-panel dbt"><strong>dbt_schema.yml</strong>models:
+  - name: orders
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: order_id
+        data_type: VARCHAR(36)
+        tests:
+          - not_null</div>
+    </div>
+    <div class="progress"><span style="width:71.4%"></span></div>
+  </section>
+
+  <section class="slide" data-slide="6">
+    <div class="topline"><span class="brand">DataHub ChangeGuard</span><span>06 / 07</span></div>
+    <div class="writeback-layout">
+      <div>
+        <p class="eyebrow">Controlled mutation</p>
+        <h2>One tag. One incident. Verified.</h2>
+        <ul class="facts">
+          <li><strong>Two flags</strong><small>Explicit confirmation</small></li>
+          <li><strong>0fd27255e1ca</strong><small>Audit fingerprint</small></li>
+          <li><strong>Idempotent</strong><small>No duplicate incident</small></li>
+        </ul>
+      </div>
+      <img class="writeback-shot" src="../output/playwright/datahub-incident.png" alt="DataHub ChangeGuard incident">
+    </div>
+    <div class="progress"><span style="width:85.7%"></span></div>
+  </section>
+
+  <section class="slide close-slide" data-slide="7">
+    <div class="topline"><span>DataHub ChangeGuard</span><span>07 / 07</span></div>
+    <p class="eyebrow">Official DataHub agent architecture</p>
+    <h2>AI explains. Deterministic code enforces. DataHub records.</h2>
+    <div class="architecture">
+      <div class="node"><h3>Agent Context Kit</h3><p>Read entities, schema fields, and bounded table plus field lineage.</p></div>
+      <div class="arrow">&rarr;</div>
+      <div class="node runtime"><h3>Runtime</h3><p>Diff, score, generate, and fingerprint with reproducible rules.</p></div>
+      <div class="arrow">&rarr;</div>
+      <div class="node catalog"><h3>DataHub</h3><p>Schema, field lineage, owner, review tag, and active incident.</p></div>
+    </div>
+    <div class="result-line">
+      <div><strong>15 tests</strong><small>Reproducible demo</small></div>
+      <div><strong>No auto deploy</strong><small>Human review boundary</small></div>
+      <div><strong>Apache 2.0</strong><small>License included</small></div>
+    </div>
+    <div class="progress"><span style="width:100%"></span></div>
+  </section>
+
+  <script>
+    const requested = new URLSearchParams(location.search).get("slide") || "1";
+    const selected = document.querySelector(`[data-slide="${requested}"]`);
+    (selected || document.querySelector('[data-slide="1"]')).classList.add("active");
+  </script>
+</body>
+</html>

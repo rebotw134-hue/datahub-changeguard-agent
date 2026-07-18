@@ -1,0 +1,32 @@
+{
+  "dataset_urn": "urn:li:dataset:(urn:li:dataPlatform:postgres,commerce.orders,PROD)",
+  "dataset_name": "commerce.orders",
+  "owners": [
+    "urn:li:corpuser:data-platform@changeguard.demo"
+  ],
+  "tags": [
+    "urn:li:tag:business-critical"
+  ],
+  "source": "fixture:examples/context.json",
+  "downstreams": [
+    {
+      "urn": "urn:li:dataset:(urn:li:dataPlatform:postgres,finance.daily_revenue,PROD)",
+      "name": "finance.daily_revenue",
+      "hops": 1,
+      "fields": [
+        "order_total",
+        "order_id"
+      ]
+    },
+    {
+      "urn": "urn:li:dataset:(urn:li:dataPlatform:postgres,growth.customer_ltv,PROD)",
+      "name": "growth.customer_ltv",
+      "hops": 1,
+      "fields": [
+        "customer_id",
+        "order_total",
+        "created_at"
+      ]
+    }
+  ]
+}

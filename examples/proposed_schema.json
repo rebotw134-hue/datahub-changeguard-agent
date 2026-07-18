@@ -1,0 +1,35 @@
+{
+  "dataset_urn": "urn:li:dataset:(urn:li:dataPlatform:postgres,commerce.orders,PROD)",
+  "columns": [
+    {
+      "name": "order_id",
+      "type": "VARCHAR(36)",
+      "nullable": false,
+      "description": "External order identifier"
+    },
+    {
+      "name": "customer_id",
+      "type": "BIGINT",
+      "nullable": false,
+      "description": "Customer identifier"
+    },
+    {
+      "name": "total_amount",
+      "type": "DECIMAL(12,2)",
+      "nullable": false,
+      "description": "Gross order amount"
+    },
+    {
+      "name": "currency",
+      "type": "VARCHAR(3)",
+      "nullable": true,
+      "description": "ISO currency code"
+    },
+    {
+      "name": "created_at",
+      "type": "TIMESTAMP",
+      "nullable": false,
+      "description": "Order creation timestamp"
+    }
+  ]
+}

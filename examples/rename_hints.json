@@ -1,0 +1,5 @@
+{
+  "renames": {
+    "order_total": "total_amount"
+  }
+}

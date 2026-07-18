@@ -1,0 +1,1 @@
+This is a real end to end run against the local catalog. The Agent Context Kit supplies versioned evidence, the deterministic analyzer returns block at one hundred out of one hundred, and the runtime emits an audit, report, compatibility S Q L, and D B T contract.

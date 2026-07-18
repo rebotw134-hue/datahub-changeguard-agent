@@ -1,0 +1,1 @@
+The demo starts with DataHub Core one point six and the official Agent Context Kit. ChangeGuard reads the commerce orders entity, five schema fields, ownership, tags, and bounded table plus field lineage. Two real downstream datasets depend on the source.

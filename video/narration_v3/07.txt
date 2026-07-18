@@ -1,0 +1,1 @@
+The official Agent Context Kit gathers evidence, deterministic code owns policy and code generation, and DataHub keeps the operational record. Fifteen tests pass, no model key is required, and every mutation remains behind an explicit human review boundary.

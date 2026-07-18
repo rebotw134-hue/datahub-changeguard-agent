@@ -1,0 +1,1 @@
+Schema changes often look safe in a pull request because reviewers cannot see the real downstream graph. DataHub ChangeGuard turns catalog evidence into an auditable release decision before production.

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>ChangeGuard review - commerce.orders</title>
+  <style>
+    :root { color-scheme: light; --ink:#17202a; --muted:#5f6b76; --line:#d8dee4;
+      --paper:#ffffff; --wash:#f4f6f8; --danger:#b42318; --warning:#b54708;
+      --green:#067647; --blue:#175cd3; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--wash); color:var(--ink); font:14px/1.5 Inter,ui-sans-serif,system-ui,sans-serif; letter-spacing:0; }
+    header { background:#12171d; color:#fff; border-bottom:4px solid #d92d20; }
+    .wrap { width:min(1180px, calc(100% - 32px)); margin:0 auto; }
+    header .wrap { padding:28px 0 24px; }
+    .kicker { margin:0 0 8px; color:#9fb7d4; font-size:12px; font-weight:700; text-transform:uppercase; }
+    h1 { margin:0; font-size:clamp(24px,4vw,38px); line-height:1.15; letter-spacing:0; overflow-wrap:anywhere; }
+    .urn { display:block; margin-top:10px; color:#c6d0da; font:12px/1.45 ui-monospace,SFMono-Regular,monospace; overflow-wrap:anywhere; }
+    main { padding:24px 0 48px; }
+    .summary { display:grid; grid-template-columns:1.3fr repeat(3,minmax(130px,1fr)); border:1px solid var(--line); background:var(--paper); }
+    .metric { min-width:0; padding:18px; border-right:1px solid var(--line); }
+    .metric:last-child { border-right:0; }
+    .label { display:block; color:var(--muted); font-size:11px; font-weight:700; text-transform:uppercase; }
+    .value { display:block; margin-top:4px; font-size:22px; font-weight:750; overflow-wrap:anywhere; }
+    .decision.block { color:var(--danger); } .decision.review { color:var(--warning); } .decision.pass { color:var(--green); }
+    section { margin-top:24px; }
+    h2 { margin:0 0 10px; font-size:18px; letter-spacing:0; }
+    .table-wrap { overflow:auto; border:1px solid var(--line); background:var(--paper); }
+    table { width:100%; min-width:900px; border-collapse:collapse; }
+    th,td { padding:12px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+    th { background:#edf1f5; color:#344054; font-size:11px; text-transform:uppercase; }
+    th:nth-child(1) { width:90px; } th:nth-child(2) { width:170px; }
+    th:nth-child(3) { width:110px; } th:nth-child(5) { width:190px; }
+    td p { margin:6px 0 0; color:var(--muted); } td p.remediation { color:#344054; }
+    code { font:12px/1.45 ui-monospace,SFMono-Regular,monospace; overflow-wrap:anywhere; }
+    .badge { display:inline-block; padding:2px 7px; border:1px solid currentColor; border-radius:4px; font-size:10px; font-weight:800; }
+    .badge.critical,.badge.high { color:var(--danger); background:#fff1f0; }
+    .badge.medium { color:var(--warning); background:#fffaeb; }
+    .badge.low { color:var(--blue); background:#eff8ff; }
+    .assets { max-width:230px; font:11px/1.45 ui-monospace,SFMono-Regular,monospace; overflow-wrap:anywhere; }
+    .assets span { white-space:nowrap; }
+    .downstreams { margin:0; padding:0; list-style:none; border:1px solid var(--line); background:var(--paper); }
+    .downstreams li { display:grid; grid-template-columns:180px 1fr 80px; gap:12px; align-items:start; padding:10px 12px; border-bottom:1px solid var(--line); }
+    .downstreams li:last-child { border-bottom:0; } .downstreams small { color:var(--muted); text-align:right; }
+    .downstreams .fields { display:block; margin-top:3px; text-align:left; }
+    .note { padding:14px 16px; border-left:4px solid var(--blue); background:#eff8ff; color:#344054; }
+    @media (max-width:760px) {
+      .summary { grid-template-columns:1fr 1fr; }
+      .metric { border-bottom:1px solid var(--line); }
+      .table-wrap { overflow:visible; border:0; background:transparent; }
+      table,tbody { display:block; width:100%; min-width:0; }
+      thead { display:none; }
+      tr { display:block; margin-bottom:12px; border:1px solid var(--line); background:var(--paper); }
+      td { display:grid; grid-template-columns:76px minmax(0,1fr); gap:10px; width:100%; padding:10px 12px; }
+      td:last-child { border-bottom:0; }
+      td::before { content:attr(data-label); color:var(--muted); font-size:10px; font-weight:800; text-transform:uppercase; }
+      td > div { min-width:0; overflow-wrap:anywhere; }
+      .assets { max-width:none; }
+      .assets span { white-space:normal; }
+      .downstreams li { grid-template-columns:1fr; }
+      .downstreams small { text-align:left; }
+    }
+  </style>
+</head>
+<body>
+  <header><div class="wrap"><p class="kicker">DataHub ChangeGuard</p><h1>Schema change impact review</h1><code class="urn">urn:li:dataset:(urn:li:dataPlatform:postgres,commerce.orders,PROD)</code></div></header>
+  <main class="wrap">
+    <div class="summary">
+      <div class="metric"><span class="label">Decision</span><span class="value decision block">BLOCK</span></div>
+      <div class="metric"><span class="label">Risk score</span><span class="value">100/100</span></div>
+      <div class="metric"><span class="label">Downstreams</span><span class="value">2</span></div>
+      <div class="metric"><span class="label">Owner</span><span class="value">data-platform</span></div>
+    </div>
+    <section><h2>Evidence-backed findings</h2><div class="table-wrap"><table><thead><tr><th>Severity</th><th>Code</th><th>Field</th><th>Evidence and action</th><th>Affected assets</th></tr></thead><tbody><tr><td data-label='Severity'><div><span class="badge critical">CRITICAL</span></div></td><td data-label='Code'><div><code>COLUMN_RENAME</code></div></td><td data-label='Field'><div><code>order_total</code></div></td><td data-label='Evidence'><div><strong>Column &#x27;order_total&#x27; is renamed to &#x27;total_amount&#x27;.</strong><p>DataHub reports 2 downstream asset(s) that may still reference &#x27;order_total&#x27;.</p><p class='remediation'>Expose &#x27;total_amount&#x27; as &#x27;order_total&#x27; through a compatibility view, update consumers, then remove the alias in a later version.</p></div></td><td data-label='Assets' class='assets'><div><span title='urn:li:dataset:(urn:li:dataPlatform:postgres,finance.daily_revenue,PROD)'>finance.daily_revenue</span><br><span title='urn:li:dataset:(urn:li:dataPlatform:postgres,growth.customer_ltv,PROD)'>growth.customer_ltv</span></div></td></tr><tr><td data-label='Severity'><div><span class="badge critical">CRITICAL</span></div></td><td data-label='Code'><div><code>TYPE_CHANGED</code></div></td><td data-label='Field'><div><code>order_id</code></div></td><td data-label='Evidence'><div><strong>Type changes from BIGINT to VARCHAR(36).</strong><p>The change is not a recognized safe widening; 1 downstream asset(s) may need updates.</p><p class='remediation'>Introduce a new typed column or compatibility cast and migrate consumers first.</p></div></td><td data-label='Assets' class='assets'><div><span title='urn:li:dataset:(urn:li:dataPlatform:postgres,finance.daily_revenue,PROD)'>finance.daily_revenue</span></div></td></tr><tr><td data-label='Severity'><div><span class="badge high">HIGH</span></div></td><td data-label='Code'><div><code>NULLABILITY_RELAXED</code></div></td><td data-label='Field'><div><code>currency</code></div></td><td data-label='Evidence'><div><strong>Column &#x27;currency&#x27; can now emit null values.</strong><p>Non-null consumers include up to 2 cataloged downstream asset(s).</p><p class='remediation'>Backfill a default or update downstream null handling before release.</p></div></td><td data-label='Assets' class='assets'><div><span title='urn:li:dataset:(urn:li:dataPlatform:postgres,finance.daily_revenue,PROD)'>finance.daily_revenue</span><br><span title='urn:li:dataset:(urn:li:dataPlatform:postgres,growth.customer_ltv,PROD)'>growth.customer_ltv</span></div></td></tr></tbody></table></div></section>
+    <section><h2>Cataloged downstream graph</h2><ul class="downstreams"><li><span><strong>finance.daily_revenue</strong><small class='fields'>Fields: order_total, order_id</small></span><code>urn:li:dataset:(urn:li:dataPlatform:postgres,finance.daily_revenue,PROD)</code><small>1 hop(s)</small></li><li><span><strong>growth.customer_ltv</strong><small class='fields'>Fields: customer_id, order_total, created_at</small></span><code>urn:li:dataset:(urn:li:dataPlatform:postgres,growth.customer_ltv,PROD)</code><small>1 hop(s)</small></li></ul></section>
+    <section class="note"><strong>Safety boundary:</strong> generated code is a review proposal. ChangeGuard writes a tag and DATA_SCHEMA incident only when explicit writeback confirmation is supplied.</section>
+  </main>
+</body>
+</html>

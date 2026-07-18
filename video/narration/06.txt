@@ -1,0 +1,1 @@
+Catalog writeback is also controlled. Only a blocked audit with two explicit confirmation flags can add the review required tag and raise a data schema incident. The fingerprint makes retries idempotent, and a read back verifies the same active incident.

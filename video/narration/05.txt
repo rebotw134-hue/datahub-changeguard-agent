@@ -1,0 +1,1 @@
+ChangeGuard generates a compatibility view that preserves order total during migration, plus a D B T contract with types and non-null tests. These are proposals only. The agent cannot deploy S Q L or change warehouse data.

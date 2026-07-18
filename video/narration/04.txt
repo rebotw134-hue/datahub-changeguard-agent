@@ -1,0 +1,1 @@
+The live run reads schema, owner, tags, and two hop lineage through DataHub. A deterministic analyzer returns block at one hundred out of one hundred. It names three findings, shows exact affected datasets, and provides a bounded remediation for each one.

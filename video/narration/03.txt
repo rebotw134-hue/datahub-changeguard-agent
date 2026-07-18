@@ -1,0 +1,1 @@
+The proposal renames order total to total amount, changes order I D from big int to var char, and relaxes currency nullability. ChangeGuard never guesses a rename. The mapping must be explicit, so generated compatibility code has an accountable source.

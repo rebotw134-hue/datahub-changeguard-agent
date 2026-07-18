@@ -1,0 +1,1 @@
+The demo starts with a real DataHub Core one point six graph. Commerce orders is owned by the data platform team and feeds finance daily revenue and growth customer lifetime value. Field lineage shows which source columns each consumer actually uses.

@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: "orders"
+    config:
+      contract:
+        enforced: true
+    columns:
+      - name: "order_id"
+        data_type: "VARCHAR(36)"
+        description: "External order identifier"
+        tests:
+          - not_null
+      - name: "customer_id"
+        data_type: "BIGINT"
+        description: "Customer identifier"
+        tests:
+          - not_null
+      - name: "total_amount"
+        data_type: "DECIMAL(12,2)"
+        description: "Gross order amount"
+        tests:
+          - not_null
+      - name: "currency"
+        data_type: "VARCHAR(3)"
+        description: "ISO currency code"
+      - name: "created_at"
+        data_type: "TIMESTAMP"
+        description: "Order creation timestamp"
+        tests:
+          - not_null

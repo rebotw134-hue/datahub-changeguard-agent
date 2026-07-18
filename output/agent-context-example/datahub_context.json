@@ -1,0 +1,32 @@
+{
+  "dataset_name": "commerce.orders",
+  "dataset_urn": "urn:li:dataset:(urn:li:dataPlatform:postgres,commerce.orders,PROD)",
+  "downstreams": [
+    {
+      "fields": [
+        "order_id",
+        "order_total"
+      ],
+      "hops": 1,
+      "name": "finance.daily_revenue",
+      "urn": "urn:li:dataset:(urn:li:dataPlatform:postgres,finance.daily_revenue,PROD)"
+    },
+    {
+      "fields": [
+        "created_at",
+        "customer_id",
+        "order_total"
+      ],
+      "hops": 1,
+      "name": "growth.customer_ltv",
+      "urn": "urn:li:dataset:(urn:li:dataPlatform:postgres,growth.customer_ltv,PROD)"
+    }
+  ],
+  "owners": [
+    "urn:li:corpuser:data-platform@changeguard.demo"
+  ],
+  "source": "datahub-agent-context:1.6.0.14:http://127.0.0.1:8080",
+  "tags": [
+    "urn:li:tag:changeguard-review-required"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "dataset_urn": "urn:li:dataset:(urn:li:dataPlatform:postgres,commerce.orders,PROD)",
+  "decision": "BLOCK",
+  "downstream_count": 2,
+  "evidence_source": "datahub-agent-context:1.6.0.14:http://127.0.0.1:8080",
+  "findings": [
+    {
+      "affected_assets": [
+        "urn:li:dataset:(urn:li:dataPlatform:postgres,finance.daily_revenue,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:postgres,growth.customer_ltv,PROD)"
+      ],
+      "code": "COLUMN_RENAME",
+      "evidence": "DataHub reports 2 downstream asset(s) that may still reference 'order_total'.",
+      "field": "order_total",
+      "remediation": "Expose 'total_amount' as 'order_total' through a compatibility view, update consumers, then remove the alias in a later version.",
+      "severity": "critical",
+      "summary": "Column 'order_total' is renamed to 'total_amount'."
+    },
+    {
+      "affected_assets": [
+        "urn:li:dataset:(urn:li:dataPlatform:postgres,finance.daily_revenue,PROD)"
+      ],
+      "code": "TYPE_CHANGED",
+      "evidence": "The change is not a recognized safe widening; 1 downstream asset(s) may need updates.",
+      "field": "order_id",
+      "remediation": "Introduce a new typed column or compatibility cast and migrate consumers first.",
+      "severity": "critical",
+      "summary": "Type changes from BIGINT to VARCHAR(36)."
+    },
+    {
+      "affected_assets": [
+        "urn:li:dataset:(urn:li:dataPlatform:postgres,finance.daily_revenue,PROD)",
+        "urn:li:dataset:(urn:li:dataPlatform:postgres,growth.customer_ltv,PROD)"
+      ],
+      "code": "NULLABILITY_RELAXED",
+      "evidence": "Non-null consumers include up to 2 cataloged downstream asset(s).",
+      "field": "currency",
+      "remediation": "Backfill a default or update downstream null handling before release.",
+      "severity": "high",
+      "summary": "Column 'currency' can now emit null values."
+    }
+  ],
+  "owners": [
+    "urn:li:corpuser:data-platform@changeguard.demo"
+  ],
+  "rename_hints": {
+    "order_total": "total_amount"
+  },
+  "risk_score": 100
+}
